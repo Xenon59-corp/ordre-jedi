@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#080f20">
+  <meta name="description" content="Portail officiel de l'Ordre Jedi — archives, règlement, formations et accès réservé.">
+  <title>Archives de l'Ordre Jedi · République Galactique</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/svg+xml" href="./favicon.svg">
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <div class="ambient ambient-a"></div><div class="ambient ambient-b"></div><div class="stars" aria-hidden="true"></div>
+  <div class="shell">
+    <aside class="sidebar" id="sidebar">
+      <a href="#accueil" class="brand" aria-label="Retour à l'accueil">
+        <span class="brand-symbol"><svg viewBox="0 0 48 48" aria-hidden="true"><path d="M24 4L37.5 11.5V28L24 44L10.5 28V11.5Z" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M24 8V41M11 15L24 25L37 15M11 28L24 25L37 28" stroke="currentColor" stroke-width="1.1" fill="none"/><circle cx="24" cy="25" r="4.2" fill="currentColor"/></svg></span>
+        <span><strong>ORDRE JEDI</strong><small>ARCHIVES DE CORUSCANT</small></span>
+      </a>
+      <div class="side-caption">NAVIGATION PRINCIPALE</div>
+      <nav id="main-nav" aria-label="Navigation principale"></nav>
+      <div class="sidebar-bottom">
+        <div class="jedi-code">« Il n'y a pas d'ignorance,<br> il y a la connaissance. »<span>— Code Jedi</span></div>
+        <div class="system-status"><span class="pulse"></span>SYSTÈME D'ARCHIVES <b>ACTIF</b></div>
+      </div>
+    </aside>
+    <div class="page-area">
+      <header class="topbar">
+        <div class="top-left"><button class="mobile-menu icon-btn" id="mobile-menu" aria-label="Ouvrir le menu">☰</button><span class="crumb">RÉPUBLIQUE GALACTIQUE</span><span class="crumb-slash">/</span><span id="breadcrumb">ARCHIVES JEDI</span></div>
+        <div class="top-right"><span class="live-tag"><i></i> CANAL SÉCURISÉ</span><span class="top-separator"></span><div id="auth-controls"></div></div>
+      </header>
+      <main id="app" tabindex="-1"><div class="loading">Connexion aux archives Jedi…</div></main>
+      <footer><span>ORDRE JEDI <span class="muted">/</span> HAUT CONSEIL</span><span>PORTAIL DES ARCHIVES — V1.0</span></footer>
+    </div>
+  </div>
+  <dialog id="modal" aria-labelledby="modal-title"></dialog>
+  <div id="toast" role="status" aria-live="polite"></div>
+  
+  <script src="./config.js"></script>
+  <script type="module" src="./app.js"></script>
+</body>
+</html>
