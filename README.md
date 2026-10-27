@@ -15,9 +15,11 @@ Site statique inspiré du style Star Wars / Temple Jedi, prêt pour GitHub Pages
 
 ## 1. Dépôt et publication GitHub Pages
 
-Dépôt : `Xenon59-corp/ordre-jedi`. Dans **Settings → Pages**, sélectionnez **Deploy from a branch**, `main`, `/(root)`. Le dépôt est actuellement privé : l'accès à Pages dépend de votre plan et des réglages GitHub. S'il faut le rendre public, aucun document confidentiel ne doit se trouver dans les fichiers du site.
+Le site est publié automatiquement sur **https://xenon59-corp.github.io/ordre-jedi/** à partir de la branche `main`, via le workflow `.github/workflows/deploy-pages.yml`.
 
-Adresse attendue une fois Pages activé : `https://xenon59-corp.github.io/ordre-jedi/`.
+Dans **Settings → Pages**, la source doit être **GitHub Actions**. Ce dépôt est public : ne publiez pas de documents confidentiels dans les fichiers statiques.
+
+**Pour configurer les comptes et la connexion**, suivez [CONFIGURATION-CONNEXION.md](CONFIGURATION-CONNEXION.md). Cette procédure contient les valeurs exactes pour ce site et le compte administrateur.
 
 ## 2. Créer la base Supabase
 
