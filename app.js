@@ -12,6 +12,9 @@ let user = null;
 let access = null;
 let selected = 'accueil';
 let busy = false;
+// Source Google Sheets existante, partagée en lecture via Google Drive.
+const REGISTRE_JEDI_SHEET_URL = 'https://docs.google.com/spreadsheets/d/1F3U-G3sCwwC9fYtstQaAujrga7v2WMOqQDuceB-RrBg/edit?usp=drivesdk';
+const REGISTRE_JEDI_PREVIEW_URL = 'https://docs.google.com/spreadsheets/d/1F3U-G3sCwwC9fYtstQaAujrga7v2WMOqQDuceB-RrBg/preview';
 const labels = {public:'Public',member:'Membres',council:'Conseil'};
 const roleNames = {admin:'Administrateur',conseil:'Conseil Jedi',editor:'Rédacteur',member:'Membre'};
 const canEdit = () => Boolean(access && ['admin','conseil','editor'].includes(access.role) && access.active);
@@ -57,10 +60,26 @@ function showHero(){
  <section class="home-section"><div class="section-heading"><div><div class="eyebrow"><span>01</span> / DÉCOUVRIR L’ORDRE</div><h2>Les piliers de notre héritage</h2></div><span class="heading-decoration">✧</span></div><div class="feature-grid">${features.map(f=>`<a class="feature-card" href="#${f.to}"><span class="feature-icon">${f.icon}</span><small>${f.tag}</small><h3>${f.title}</h3><p>${f.description}</p><span class="feature-next">CONSULTER <b>↗</b></span></a>`).join('')}</div></section>
  <section class="bottom-grid"><div class="code-panel"><div class="eyebrow">02 / DOCTRINE</div><h2>Le Code Jedi</h2><p>Il n’y a pas d’émotion, il y a la paix.<br>Il n’y a pas d’ignorance, il y a la connaissance.<br>Il n’y a pas de passion, il y a la sérénité.<br>Il n’y a pas de chaos, il y a l’harmonie.<br>Il n’y a pas de mort, il y a la Force.</p><span>— ENSEIGNEMENTS DE L’ORDRE</span></div><div class="path-panel"><div class="eyebrow">03 / PROGRESSION</div><h2>La voie du Jedi</h2><div class="rank-track">${['Initié','Padawan','Chevalier','Chevalier accompli','Maître'].map((s,i)=>`<div class="rank"><i>${String(i+1).padStart(2,'0')}</i>${s}</div>`).join('')}</div><a href="#titres">DÉCOUVRIR LA HIÉRARCHIE <span>→</span></a></div></section>`;
 }
+function effectifsSheetEmbed(){
+ return `<section class="sheet-live" aria-label="Registre Jedi Google Sheets">
+  <div class="sheet-live-toolbar">
+   <div>
+    <div class="sheet-live-eyebrow">◇ SOURCE OFFICIELLE · GOOGLE SHEETS</div>
+    <h2>Registre Jedi</h2>
+    <p>Consultez les effectifs et les formes de combat. Les modifications du document source sont visibles ici sans nouvelle publication du portail.</p>
+   </div>
+   <a class="sheet-live-open" href="${safe(REGISTRE_JEDI_SHEET_URL)}" target="_blank" rel="noopener noreferrer">OUVRIR DANS GOOGLE SHEETS ↗</a>
+  </div>
+  <div class="sheet-embedded-wrap">
+   <iframe title="Registre Jedi officiel, avec les onglets Registre Jedi et Formes de combat" src="${safe(REGISTRE_JEDI_PREVIEW_URL)}" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+  </div>
+  <p class="sheet-live-note">Source : <strong>Registre Jedi</strong> · Onglets « Registre Jedi » et « Formes de combat ». Si la prévisualisation ne s’affiche pas dans votre navigateur, utilisez « Ouvrir dans Google Sheets ». L'accès est soumis aux autorisations Google du document.</p>
+ </section>`;
+}
 function pageView(page){
  if(!page){return `<section class="simple-state"><span class="state-mark">⌕</span><h1>Document introuvable</h1><p>Cette page n’est pas disponible dans les archives auxquelles vous avez accès.</p><a class="primary-btn" href="#accueil">RETOUR À L’ACCUEIL</a></section>`;}
  const editAllowed=canEdit() && (page.visibility!=='council'||canReadCouncil());
- return `<div class="page-banner"><div class="banner-top"><span class="eyebrow">ORDRE JEDI / ${safe(page.eyebrow||'ARCHIVES')}</span><span class="visibility ${page.visibility==='council'?'gold':''}">${page.visibility==='council'?'◈':'◉'} ${safe((labels[page.visibility]||page.visibility).toUpperCase())}</span></div><h1>${safe(page.title)}</h1><p>${safe(page.summary)}</p><div class="banner-meta"><span>✦ DOCUMENT DES ARCHIVES</span>${page.updated_at?`<span>ACTUALISÉ LE ${safe(formatDate(page.updated_at)).toUpperCase()}</span>`:''}${editAllowed?`<button class="small-outline" data-action="edit-page" data-slug="${safe(page.slug)}">✎ MODIFIER LE DOCUMENT</button>`:''}</div></div><article class="archive-document"><div class="article-edge"></div><div class="doc-heading"><span>HOLONET / ARCHIVES DE CORUSCANT</span><span>RÉF. ${safe(page.slug.toUpperCase())}</span></div><div class="markdown">${parseMarkdown(page.content)}</div><div class="article-bottom">✦ &nbsp; QUE LA FORCE SOIT AVEC VOUS &nbsp; ✦</div></article>`;
+ return `<div class="page-banner"><div class="banner-top"><span class="eyebrow">ORDRE JEDI / ${safe(page.eyebrow||'ARCHIVES')}</span><span class="visibility ${page.visibility==='council'?'gold':''}">${page.visibility==='council'?'◈':'◉'} ${safe((labels[page.visibility]||page.visibility).toUpperCase())}</span></div><h1>${safe(page.title)}</h1><p>${safe(page.summary)}</p><div class="banner-meta"><span>✦ DOCUMENT DES ARCHIVES</span>${page.updated_at?`<span>ACTUALISÉ LE ${safe(formatDate(page.updated_at)).toUpperCase()}</span>`:''}${editAllowed?`<button class="small-outline" data-action="edit-page" data-slug="${safe(page.slug)}">✎ MODIFIER LE DOCUMENT</button>`:''}</div></div><article class="archive-document"><div class="article-edge"></div><div class="doc-heading"><span>HOLONET / ARCHIVES DE CORUSCANT</span><span>RÉF. ${safe(page.slug.toUpperCase())}</span></div><div class="markdown">${parseMarkdown(page.content)}</div>${page.slug==='effectifs'?effectifsSheetEmbed():''}<div class="article-bottom">✦ &nbsp; QUE LA FORCE SOIT AVEC VOUS &nbsp; ✦</div></article>`;
 }
 function lockedView(){return `<section class="simple-state locked"><span class="state-mark">◇</span><div class="eyebrow">NIVEAU DE SÉCURITÉ : CONSEIL JEDI</div><h1>Archives classifiées</h1><p>Cette section est réservée aux membres autorisés du Haut Conseil Jedi. La consultation requiert une identification GitHub et une autorisation accordée par l’administration.</p>${configured?(user?'<div class="note-block">Compte connecté, mais autorisation de niveau Conseil absente.</div>':'<button class="primary-btn" data-action="login">S’IDENTIFIER AVEC GITHUB ↗</button>'):'<div class="note-block">Configuration de l’authentification requise pour activer cet espace.</div>'}</section>`;}
 function adminView(){
