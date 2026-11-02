@@ -1,7 +1,6 @@
-// CONFIGURATION PUBLIQUE : renseignez ces valeurs après création du projet Supabase.
-// Ces deux éléments sont publics dans une application web; ne placez JAMAIS
-// ici la service_role key, ni le secret de l'application GitHub OAuth.
+// Configuration publique : URL Supabase et clé publishable uniquement.
+// Ne jamais ajouter de secret OAuth ni de clé service_role dans ce fichier.
 window.JEDI_CONFIG = {
-  supabaseUrl: '',
-  supabaseAnonKey: ''
+  supabaseUrl: 'https://xqpkbhlcptyrtyureanm.supabase.co',
+  supabaseAnonKey: 'sb_publishable_XJrBsNLVDBWaS9Xd7vyy0w_WcfsNQCv'
 };
