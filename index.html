@@ -16,23 +16,25 @@
 <body>
   <div class="ambient ambient-a"></div><div class="ambient ambient-b"></div><div class="stars" aria-hidden="true"></div>
   <div class="shell">
-    <aside class="sidebar" id="sidebar">
-      <a href="#accueil" class="brand" aria-label="Retour à l'accueil">
-        <span class="brand-symbol"><svg viewBox="0 0 48 48" aria-hidden="true"><path d="M24 4L37.5 11.5V28L24 44L10.5 28V11.5Z" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M24 8V41M11 15L24 25L37 15M11 28L24 25L37 28" stroke="currentColor" stroke-width="1.1" fill="none"/><circle cx="24" cy="25" r="4.2" fill="currentColor"/></svg></span>
-        <span><strong>ORDRE JEDI</strong><small>ARCHIVES DE CORUSCANT</small></span>
-      </a>
-      <div class="side-caption">NAVIGATION PRINCIPALE</div>
-      <nav id="main-nav" aria-label="Navigation principale"></nav>
-      <div class="sidebar-bottom">
-        <div class="jedi-code">« Il n'y a pas d'ignorance,<br> il y a la connaissance. »<span>— Code Jedi</span></div>
-        <div class="system-status"><span class="pulse"></span>SYSTÈME D'ARCHIVES <b>ACTIF</b></div>
-      </div>
-    </aside>
     <div class="page-area">
       <header class="topbar">
-        <div class="top-left"><button class="mobile-menu icon-btn" id="mobile-menu" aria-label="Ouvrir le menu">☰</button><span class="crumb">RÉPUBLIQUE GALACTIQUE</span><span class="crumb-slash">/</span><span id="breadcrumb">ARCHIVES JEDI</span></div>
-        <div class="top-right"><span class="live-tag"><i></i> CANAL SÉCURISÉ</span><span class="top-separator"></span><div id="auth-controls"></div></div>
+        <div class="top-left">
+          <a href="#accueil" class="brand" aria-label="Retour à l'accueil">
+            <span class="brand-symbol"><svg viewBox="0 0 48 48" aria-hidden="true"><path d="M24 4L37.5 11.5V28L24 44L10.5 28V11.5Z" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M24 8V41M11 15L24 25L37 15M11 28L24 25L37 28" stroke="currentColor" stroke-width="1.1" fill="none"/><circle cx="24" cy="25" r="4.2" fill="currentColor"/></svg></span>
+            <span><strong>ORDRE JEDI</strong><small>ARCHIVES DE CORUSCANT</small></span>
+          </a>
+          <span class="topbar-divider" aria-hidden="true"></span>
+          <div class="page-context"><span class="crumb">RÉPUBLIQUE GALACTIQUE</span><span class="crumb-slash"> / </span><span id="breadcrumb">ARCHIVES JEDI</span></div>
+        </div>
+        <div class="top-right">
+          <span class="live-tag"><i></i> CANAL SÉCURISÉ</span><span class="top-separator"></span>
+          <div id="auth-controls"></div>
+          <button class="mobile-menu icon-btn" id="mobile-menu" type="button" aria-label="Afficher la navigation" aria-expanded="false" aria-controls="main-nav">☰</button>
+        </div>
       </header>
+      <div class="primary-navigation" id="sidebar">
+        <nav id="main-nav" aria-label="Navigation principale"></nav>
+      </div>
       <main id="app" tabindex="-1"><div class="loading">Connexion aux archives Jedi…</div></main>
       <footer><span>ORDRE JEDI <span class="muted">/</span> HAUT CONSEIL</span><span>PORTAIL DES ARCHIVES — V1.0</span></footer>
     </div>
