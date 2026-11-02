@@ -15,3 +15,21 @@
 .sheet-live-note strong{color:#dbc696}
 @media(max-width:850px){.sheet-live-toolbar{padding:18px}.sheet-embedded-wrap{height:65vh;min-height:450px}}
 @media(max-width:570px){.sheet-live-toolbar h2{font-size:21px}.sheet-live-open{width:100%}.sheet-embedded-wrap{height:550px;min-height:550px}}
+
+
+/* Registre Jedi : tableau HTML lisible même lorsque Google bloque les iframes. */
+.registre-tabs{display:flex;flex-wrap:wrap;gap:8px;margin-top:15px;border-bottom:1px solid #365b6f;padding:0 0 11px}
+.registre-tabs button{background:#112e42;color:#aecbd4;font-size:11px;font-weight:700;letter-spacing:.7px;border:1px solid #345567;padding:10px 15px;border-radius:4px;cursor:pointer}
+.registre-tabs button.active{background:#20526a;color:#eafbff;border-color:#7ed6e0}
+.registre-table-scroll{overflow-x:auto;max-width:100%;border:1px solid #35576c;scrollbar-color:#456b7e transparent}
+.registre-table{width:100%;border-collapse:collapse;min-width:850px;text-align:left;font-size:12px}
+.registre-table thead{background:#1a3a51}
+.registre-table th{padding:14px 12px;color:#e8d09a;font-size:10px;letter-spacing:.3px;font-weight:700;white-space:nowrap;border-bottom:1px solid #53728a}
+.registre-table td{padding:12px;color:#d0e2eb;border-bottom:1px solid #25475a;vertical-align:top}
+.registre-table tr:nth-child(even) td{background:#10283a}
+.registre-table tr:hover td{background:#20445a}
+.registre-table .registre-summary td{background:#1f3e51;font-weight:700;color:#f2dca7}
+.registre-table .registre-section-row th{color:#f1d69b;background:#18394d;font-size:12px;padding:13px 12px}
+.registre-status{margin:13px 0;color:#e4c58d;font-size:11px;line-height:1.7}
+.registre-status[data-fresh="true"]{color:#87d6bb}
+@media(max-width:570px){.registre-tabs button{flex:1;letter-spacing:0;padding:10px 7px;font-size:10px}.registre-table{min-width:780px}}
