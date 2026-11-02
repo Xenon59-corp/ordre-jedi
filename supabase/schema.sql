@@ -32,7 +32,7 @@ revoke all on function public.current_github_id() from public;
 revoke all on function public.current_member_role() from public;
 revoke all on function public.my_access() from public;
 grant execute on function public.current_github_id() to authenticated;
-grant execute on function public.current_member_role() to authenticated, anon;
+grant execute on function public.current_member_role() to authenticated;
 grant execute on function public.my_access() to authenticated;
 alter table public.members enable row level security;
 alter table public.pages enable row level security;
@@ -55,10 +55,15 @@ drop policy if exists members_delete on public.members;
 create policy members_delete on public.members for delete to authenticated
 using ((select public.current_member_role())='admin');
 drop policy if exists pages_select on public.pages;
-create policy pages_select on public.pages for select to anon, authenticated
-using (visibility='public'
-or (visibility='member' and (select public.current_member_role()) is not null)
-or (visibility='council' and (select public.current_member_role()) in ('admin','conseil')));
+drop policy if exists pages_public_read on public.pages;
+drop policy if exists pages_authorized_read on public.pages;
+create policy pages_public_read on public.pages for select to anon, authenticated
+using (visibility='public');
+create policy pages_authorized_read on public.pages for select to authenticated
+using (
+  (visibility='member' and (select public.current_member_role()) is not null)
+  or (visibility='council' and (select public.current_member_role()) in ('admin','conseil'))
+);
 drop policy if exists pages_insert on public.pages;
 create policy pages_insert on public.pages for insert to authenticated
 with check ((select public.current_member_role()) in ('admin','conseil','editor')
