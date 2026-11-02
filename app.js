@@ -597,7 +597,7 @@ function parseMarkdown(content=''){
  }
  closeP();closeL();closeQ();return out;
 }
-function getNav(){return navigation.map(([slug,icon,label,tag])=>`<a class="nav-link ${slug===selected?'active':''}" href="#${slug}" ${slug===selected?'aria-current="page"':''}><span class="nav-icon">${icon}</span><span>${safe(label)}</span>${tag==='RÉSERVÉ'?'<span class="nav-lock">⌁</span>':''}</a>`).join('')+(isAdmin()?'<div class="side-caption admin-caption">ADMINISTRATION</div><a href="#administration" class="nav-link '+(selected==='administration'?'active':'')+'"><span class="nav-icon">⚙</span><span>Gestion des accès</span></a>':'');}
+function getNav(){return navigation.map(([slug,icon,label,tag])=>`<a class="nav-link ${slug===selected?'active':''}" href="#${slug}" ${slug===selected?'aria-current="page"':''}><span class="nav-icon">${icon}</span><span>${safe(label)}</span>${tag==='RÉSERVÉ'?'<span class="nav-lock">⌁</span>':''}</a>`).join('')+(isAdmin()?'<a href="#administration" class="nav-link admin-nav-link '+(selected==='administration'?'active':'')+'" '+(selected==='administration'?'aria-current="page"':'')+'><span class="nav-icon">⚙</span><span>Administration</span></a>':'');}
 function renderNav(){q('#main-nav').innerHTML=getNav();}
 function renderAuth(){
  const root=q('#auth-controls');
@@ -689,8 +689,13 @@ document.addEventListener('click',async e=>{
  if(action==='edit-member')memberEditor(button.dataset.githubId);
  if(action==='close-modal')closeModal();
 });
-q('#mobile-menu').addEventListener('click',()=>q('#sidebar').classList.toggle('open'));
-q('#main-nav').addEventListener('click',e=>{if(e.target.closest('a'))q('#sidebar').classList.remove('open');});
+function setNavigationOpen(open){
+ q('#sidebar').classList.toggle('open',open);
+ q('#mobile-menu').setAttribute('aria-expanded',String(open));
+ q('#mobile-menu').setAttribute('aria-label',open?'Masquer la navigation':'Afficher la navigation');
+}
+q('#mobile-menu').addEventListener('click',()=>setNavigationOpen(!q('#sidebar').classList.contains('open')));
+q('#main-nav').addEventListener('click',e=>{if(e.target.closest('a'))setNavigationOpen(false);});
 window.addEventListener('hashchange',()=>{render();window.scrollTo({top:0,behavior:'smooth'});});
 modal.addEventListener('click',e=>{if(e.target===modal)closeModal();});
 async function init(){
