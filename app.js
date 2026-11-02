@@ -448,10 +448,33 @@ const esc=x=>String(x??'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>
 
 function tableMarkup(tab) {
  const data=records[tab]||[];
- const rows=data.map(row=>{
-  if(tab==='formes' && row[0] && !row[1]) return '<tr class="registre-section-row"><th colspan="4">'+esc(row[0])+'</th></tr>';
-  return '<tr class="'+(tab==='effectifs' && row[0]?.startsWith('Total /')?'registre-summary':'')+'">'+columns[tab].map((_,i)=>'<td>'+esc(row[i]||'—')+'</td>').join('')+'</tr>';
- }).join('');
+ const rowHtml=row=>'<tr>'+columns[tab].map((_,i)=>'<td>'+esc(row[i]||'—')+'</td>').join('')+'</tr>';
+ let rows='';
+ if(tab==='effectifs'){
+  // Déduit les groupes de la colonne "Rang" du Google Sheet, sans changer son ordre interne.
+  const norm=value=>String(value||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().trim();
+  const members=data.filter(row=>String(row[0]||'').trim() && !norm(row[0]).startsWith('total /'));
+  const summaries=data.filter(row=>norm(row[0]).startsWith('total /'));
+  const groups=[
+   {id:'maitres',title:'MAÎTRES JEDI',test:rank=>rank.includes('maitre')},
+   {id:'chevaliers',title:'CHEVALIERS JEDI',test:rank=>rank.includes('chevalier')},
+   {id:'padawans',title:'PADAWANS',test:rank=>rank.includes('padawan')}
+  ];
+  const grouped=groups.map(group=>({...group,members:members.filter(row=>group.test(norm(row[1])))}));
+  const unclassified=members.filter(row=>!groups.some(group=>group.test(norm(row[1]))));
+  if(unclassified.length) grouped.push({id:'autres',title:'AUTRES GRADES',members:unclassified});
+  rows=grouped.map(group=>{
+   const count=group.members.length;
+   const header='<tr class="registre-grade-heading grade-'+group.id+'"><th scope="rowgroup" colspan="'+columns[tab].length+'"><span class="registre-grade-title">'+esc(group.title)+'</span><span class="registre-grade-count">'+count+' membre'+(count>1?'s':'')+'</span></th></tr>';
+   return header+(count?group.members.map(rowHtml).join(''):'<tr class="registre-empty"><td colspan="'+columns[tab].length+'">Aucun membre dans ce grade</td></tr>');
+  }).join('');
+  rows+=summaries.map(row=>'<tr class="registre-summary">'+columns[tab].map((_,i)=>'<td>'+esc(row[i]||'—')+'</td>').join('')+'</tr>').join('');
+ }else{
+  rows=data.map(row=>{
+   if(row[0] && !row[1]) return '<tr class="registre-section-row"><th colspan="4">'+esc(row[0])+'</th></tr>';
+   return rowHtml(row);
+  }).join('');
+ }
  return '<div class="registre-table-scroll"><table class="registre-table"><thead><tr>'+columns[tab].map(c=>'<th scope="col">'+esc(c)+'</th>').join('')+'</tr></thead><tbody>'+rows+'</tbody></table></div>';
 }
 function paint() {
