@@ -132,9 +132,21 @@ La présentation au Conseil de Chevalier exige un minimum de deux semaines de fo
 - **Consulaire** — savoir, diplomatie et maîtrise de la Force
 - **Gardien** — défense et techniques de combat
 - **Sentinelle** — équilibre entre enquête, savoir et combat`},
-  {slug:'connaissances',title:'Connaissances Jedi',eyebrow:'ARCHIVES DU TEMPLE',summary:'Traditions, histoire et fondements philosophiques de l’Ordre.',visibility:'public',sort_order:6,content:`## Le Code Jedi
+  {slug:'connaissances',title:'Connaissances Jedi',eyebrow:'ARCHIVES DU TEMPLE',summary:'Traditions, histoire et fondements philosophiques de l’Ordre.',visibility:'public',sort_order:6,content:`## Le Code Jedi — Odan-Urr
 
-> Il n’y a pas d’émotion, il y a la paix.\nIl n’y a pas d’ignorance, il y a la connaissance.\nIl n’y a pas de passion, il y a la sérénité.\nIl n’y a pas de chaos, il y a l’harmonie.\nIl n’y a pas de mort, il y a la Force.
+> *Il n'y a pas d'émotion, il y a la paix.*
+> *Il n'y a pas d'ignorance, il y a la connaissance.*
+> *Il n'y a pas de passion, il y a la sérénité.*
+> *Il n'y a pas de chaos, il y a l'harmonie.*
+> *Il n'y a pas de mort, il y a la Force.*
+
+### Autre formulation du Code Jedi
+
+> *Émotion et pourtant, paix,*
+> *Ignorance et pourtant, savoir*
+> *Passion et pourtant sérénité.*
+> *Chaos et pourtant, Harmonie.*
+> *Mort et pourtant, la Force.*
 
 ## Les piliers de l’Ordre
 
