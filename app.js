@@ -581,7 +581,7 @@ function hashPage(){return decodeURIComponent(location.hash.replace(/^#/,''))||'
 function navigate(slug){location.hash=slug;}
 function parseMarkdown(content=''){
  // Never render raw HTML from database content. Escape before basic Markdown decorations.
- const inline = s => safe(s).replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>').replace(/`([^`]+)`/g,'<code>$1</code>');
+ const inline = s => safe(s).replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>').replace(/`([^`]+)`/g,'<code>$1</code>').replace(/(^|[^*])\*([^*\n]+)\*/g,'$1<em>$2</em>');
  const lines=String(content).replace(/\r/g,'').split('\n');
  let out='',list=false,quote=false,paragraph=[];
  const closeP=()=>{if(paragraph.length){out+=`<p>${paragraph.map(inline).join('<br>')}</p>`;paragraph=[];}};
