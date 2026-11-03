@@ -232,3 +232,15 @@
 .pd-library-link:hover{background:#204b48;color:white}
 @media(max-width:1000px){.pd-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.pd-toc-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:700px){.pd-topnav>span{display:none}.pd-hero{padding:38px 24px 30px}.pd-hero-symbol{right:-35px;top:22%;font-size:170px}.pd-intro{padding:18px;gap:13px}.pd-intro>span{font-size:35px}.pd-chapter{padding:23px 18px 30px;scroll-margin-top:90px}.pd-grid,.pd-grid.pd-two,.pd-story-grid,.pd-toc-grid{grid-template-columns:1fr}.pd-chapter-head{gap:12px}.pd-chapter-icon{height:43px;width:43px;font-size:23px}.pd-library-entry{flex-direction:column;align-items:flex-start;padding:21px}.pd-library-link{width:100%;justify-content:center}}
+
+
+/* Deux formulations fidèles du Code Jedi, présentées en vers */
+.pd-code-versions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;align-items:start}
+.pd-code-version{padding:21px;background:linear-gradient(145deg,#153747,#0c2838);border:1px solid #4d8277}
+.pd-code-alternative{border-color:#816f51;background:linear-gradient(145deg,#263745,#102332)}
+.pd-code-version h3{margin:0 0 18px;color:#b7e9d5;font:500 17px/1.5 var(--display);border-bottom:1px solid #3a615b;padding-bottom:11px}
+.pd-code-alternative h3{color:#ead6aa;border-bottom-color:#685839}
+.pd-code-version .pd-precept{border-color:#39655f;background:#102e3c;min-height:48px;align-items:center}
+.pd-code-version .pd-precept em{font-style:italic;font-weight:500}
+.pd-code-alternative .pd-precept{border-color:#5a5b52;background:#182f3b}
+@media(max-width:900px){.pd-code-versions{grid-template-columns:1fr}}
