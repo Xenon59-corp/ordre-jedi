@@ -148,7 +148,8 @@ Privilégier la négociation et la protection des vies.
 Agir avec discernement, sans se laisser submerger par ses émotions.
 
 ### Devoir
-Servir la République et défendre ceux qui ne peuvent se défendre seuls.`}
+Servir la République et défendre ceux qui ne peuvent se défendre seuls.`},
+  {slug:'manuel-padawan',title:'Manuel du Padawan',eyebrow:'BIBLIOTHÈQUE JEDI',summary:'Histoire, Code Jedi, trois piliers, hiérarchie, sabres laser, formes de combat et épreuves.',visibility:'public',sort_order:7,content:`Manuel d’instruction du Padawan. Cette édition reprend les thèmes du manuel de référence pour les présenter dans les Archives de Coruscant.`}
 ];
 export const features =[
  {icon:'◇',title:'La Voie du Jedi',tag:'FORMATION',description:'Des Initiés aux Maîtres, chaque étape est un chemin vers la sagesse.',to:'formation'},
